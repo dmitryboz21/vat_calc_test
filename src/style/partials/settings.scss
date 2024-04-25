@@ -1,0 +1,37 @@
+.settings-form {
+	width: 100%;
+	border: 1px solid $border-color;
+	display: block;
+	padding: 10px;
+	border-radius: 5px;
+
+	@media screen and (max-width: 1060px){
+		border: none;
+		border-bottom: 3px solid $border-color;
+		padding: 0;
+		padding-bottom: 30px;
+
+	}
+
+	&__title {
+		font-size: 18px;
+		width: 100%;
+		display: block;
+		padding-bottom: 8px;
+		position: relative;
+		&::before{
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			height: 1px;
+			width: 200px;
+			max-width: 100%;
+			background: $border-color;
+		}
+	}
+	&+.settings-form{
+		margin-top: 20px;
+	}
+
+}

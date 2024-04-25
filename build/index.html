@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta property="og:image" content="images/logo.svg">
+    <meta name="format-detection" content="telephone=no">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+      var localSwitchOptionsArray = [{
+      	'changeClassTargetSelector': 'html',
+      	'changableClass': 'dark-theme',
+      	'localStoragePropName': 'darkTheme',
+      	'enabledVal': 'true',
+      	'switchSelector': '.js-change-local-option[name="dark-theme-switch"]'
+      },
+      {
+      	'changeClassTargetSelector': 'html',
+      	'changableClass': 'html--hide-logo',
+      	'localStoragePropName': 'hideLogo',
+      	'enabledVal': 'true',
+      	'switchSelector': '.js-change-local-option[name="show-logo-switch"]'
+      }];
+      
+      
+      localSwitchOptionsArray.forEach(element => {
+      	/*$('body').on('change', element['switchSelector'], function () {
+      		if ($(this).is(':checked')) {
+      			$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+      			localStorage.setItem(element['localStoragePropName'], element['enabledVal']);
+      		}
+      		else {
+      			$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+      			localStorage.setItem(element['localStoragePropName'], 'false');
+      		}
+      	});
+      	*/
+      //отработает при загрузке страницы
+      	if (localStorage.hasOwnProperty(element['localStoragePropName'])) {
+      		let optionInStorage = localStorage.getItem(element['localStoragePropName']) === element['enabledVal'];
+      		if (optionInStorage) {
+      			$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+      			//$(element['switchSelector']).prop("checked", true);
+      		}
+      		else {
+      			$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+      			//$(element['switchSelector']).prop("checked", false);
+      		}
+      	}
+      });
+      
+    </script>
+    <link href="css/main.css" rel="stylesheet">
+    <!--title= `${page.title}`-->
+  </head>
+  <body>
+    <!--header.site-header
+    .container.container--site-header
+    	a.sh-logo(href="/")
+    		|  <svg width="26" height="10" viewBox="0 0 26 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path  class="sh-logo-svg__back" d="M6.74303 2.17287H4.64903H2.55503H1.16303V4.81287H2.55503H4.53503L6.51503 6.07287H2.55503V9.30086L1.16302 7.51287L1.16303 0.900865H3.95303L6.74303 2.17287ZM17.2972 2.55386V4.20686V7.51287L15.9052 9.30086V4.14086C15.9052 3.80486 15.9172 3.52486 15.9412 3.30086L15.9172 3.28886C15.8452 3.41686 15.7012 3.64086 15.4852 3.96086L15.3052 4.22486L14.1929 6.04351H11.5068L10.4092 4.23686C10.2572 4.02086 10.0532 3.72086 9.79722 3.33686L9.76122 3.34886C9.78522 3.57286 9.79722 3.85286 9.79722 4.18886V9.30086L8.40522 7.51287V4.20686V2.55386L9.08922 0.900865H9.77322L11.3152 3.21086L12.0862 4.36586L12.4717 4.94337H13.2427L13.6282 4.36586L14.3992 3.21086L15.9412 0.900865H16.6192L17.2972 2.55386ZM25.4183 0.900864L24.0683 2.14886H22.7183V5.72486V7.51287L21.3143 9.30086V7.51287V5.72486V2.14886H18.6143L19.9881 0.900865L25.4183 0.900864Z" fill="#74C69D"/><path class="sh-logo-svg__front"  d="M6.32574 1.81856H4.23174H2.13774H0.745736V4.45856H2.13774H4.11774L6.09774 5.71856H2.13774V8.94655L0.745728 7.15856L0.745736 0.546557H3.53574L6.32574 1.81856ZM16.8799 2.19956V3.85256V7.15856L15.4879 8.94655V3.78656C15.4879 3.45056 15.4999 3.17056 15.5239 2.94656L15.4999 2.93456C15.4279 3.06256 15.2839 3.28656 15.0679 3.60656L14.8879 3.87056L13.7756 5.6892H11.0895L9.99193 3.88256C9.83993 3.66656 9.63593 3.36656 9.37993 2.98256L9.34393 2.99456C9.36793 3.21856 9.37993 3.49856 9.37993 3.83456V8.94655L7.98793 7.15856V3.85256V2.19956L8.67193 0.546557H9.35593L10.8979 2.85656L11.6689 4.01156L12.0544 4.58906H12.8254L13.2109 4.01156L13.9819 2.85656L15.5239 0.546557H16.2019L16.8799 2.19956ZM25.001 0.546555L23.651 1.79456H22.301V5.37056V7.15856L20.897 8.94655V7.15856V5.37056V1.79456H18.197L19.5708 0.546557L25.001 0.546555Z" fill="#1B4332"/></svg>
+    		//|  <svg class="sh-logo-svg" width="139.307mm" height="52.2729mm" viewBox="0 0 12475.24 4681.16" fill="none" xmlns="http://www.w3.org/2000/svg"><g>	<path class="sh-logo-svg__back sh-logo-svg__back--1" d="M8510.08 1074.03l0 883.51 0 1767.43 -744.11 955.64 0 -2758.23c0,-179.62 6.26,-329.32 19.19,-449.13l-12.93 -6.26c-38.39,68.28 -115.36,188.1 -230.93,359.22l-96.17 141.03 -594.6 972.21 -1435.89 0 -586.72 -965.74c-81.22,-115.57 -190.32,-275.79 -327.1,-481.06l-19.19 6.26c12.73,119.81 19.19,269.53 19.19,449.13l0 2732.57 -744.11 -955.64 0 -1767.43 0 -883.51 365.69 -883.72 365.49 0 824.32 1234.86 412.16 617.43 206.08 308.71 412.16 0 206.08 -308.71 412.16 -617.43 824.32 -1234.86 362.45 0 362.46 883.72z"/>	<path class="sh-logo-svg__front sh-logo-svg__front--1" d="M8287.02 884.71l0 883.51 0 1767.24 -744.11 955.85 0 -2758.44c0,-179.62 6.27,-329.12 19.2,-448.94l-12.93 -6.46c-38.39,68.49 -115.37,188.29 -230.93,359.22l-96.17 141.22 -594.6 972.21 -1435.89 0 -586.72 -965.95c-81.22,-115.36 -190.32,-275.78 -327.1,-481.05l-19.19 6.47c12.73,119.8 19.19,269.31 19.19,448.93l0 2732.78 -744.11 -955.85 0 -1767.24 0 -883.51 365.69 -883.72 365.49 0 824.32 1234.86 412.16 617.43 206.08 308.71 412.16 0 206.09 -308.71 412.16 -617.43 824.32 -1234.86 362.45 0 362.45 883.72z"/></g><g>	<polygon class="sh-logo-svg__back sh-logo-svg__back--2" points="3205.95,870.92 2086.65,870.92 967.16,870.92 223.05,870.92 223.05,2282.16 967.16,2282.16 2025.64,2282.16 3084.12,2955.76 967.16,2955.76 967.16,4681.16 223.05,3725.52 223.05,190.85 1714.5,190.85 "/>	<polygon class="sh-logo-svg__front sh-logo-svg__front--2" points="2982.9,681.4 1863.6,681.4 744.11,681.4 -0,681.4 -0,2092.65 744.11,2092.65 1802.59,2092.65 2861.07,2766.25 744.11,2766.25 744.11,4491.86 -0,3536.01 -0,1.55 1491.45,1.55 "/></g><g>	<polygon class="sh-logo-svg__back sh-logo-svg__back--3" points="12475.24,189.3 11753.55,856.44 11031.88,856.44 11031.88,2768.13 11031.88,3723.97 10281.3,4679.62 10281.3,3723.97 10281.3,2768.13 10281.3,856.44 8838.14,856.44 9572.34,189.3 "/>	<polygon class="sh-logo-svg__front sh-logo-svg__front--3" points="12252.19,0 11530.5,667.13 10808.82,667.13 10808.82,2578.62 10808.82,3534.46 10058.25,4490.31 10058.25,3534.46 10058.25,2578.62 10058.25,667.13 8614.88,667.13 9349.29,0 "/></g></svg>
+    
+    
+    	//.main-menu
+    		.mm-button.mm-button--active
+    			.mm-button__icon
+    				include ../../img/bytesize-icons/home.svg
+    				include ../../img/bytesize-icons/home.svg
+    			.mm-button__name Главная
+    		.mm-button-delimiter
+    		.mm-button
+    			.mm-button__icon
+    				include ../../img/bytesize-icons/plus.svg
+    				include ../../img/bytesize-icons/plus.svg
+    			.mm-button__name Доходы
+    		.mm-button-delimiter
+    		.mm-button
+    			.mm-button__icon
+    				include ../../img/bytesize-icons/minus.svg
+    				include ../../img/bytesize-icons/minus.svg
+    			.mm-button__name Расходы
+    		.mm-button-delimiter
+    		.mm-button
+    			.mm-button__icon
+    				include ../../img/bytesize-icons/activity.svg
+    				include ../../img/bytesize-icons/activity.svg
+    			.mm-button__name Статистика
+    		//.mm-button
+    			.mm-button__icon
+    				include ../../img/bytesize-icons/settings.svg
+    			.mm-button__name Настройки
+    		.mm-button-delimiter--before-options
+    		.mm-button.mm-button--options
+    			.mm-button__icon
+    				include ../../img/bytesize-icons/options.svg
+    				include ../../img/bytesize-icons/options.svg
+    			.mm-button__name Настройки
+    //.sh-burger
+    
+    -->
+    <div class="sh-placeholder"></div>
+    <main class="main">
+      <div class="container">
+        <div class="flex-row">
+          <div class="flex-row__item flex-row__item--w-main">
+            <div class="expences-cats">
+              <div class="expences-cat">
+                <div class="expences-cat__name">Продукты</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:0;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Еда вне дома</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:33%;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Транспорт</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:79%;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat expences-cat--over-limit">
+                <div class="expences-cat__name">Продукты</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill expences-cat__icon-fill"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Продукты</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:0;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Еда вне дома</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:33%;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Транспорт</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:79%;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat expences-cat--over-limit">
+                <div class="expences-cat__name">Продукты</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill expences-cat__icon-fill"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Продукты</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:0;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Еда вне дома</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:33%;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Транспорт</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:79%;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat expences-cat--over-limit">
+                <div class="expences-cat__name">Продукты</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill expences-cat__icon-fill"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Продукты</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:0;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Еда вне дома</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:33%;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat">
+                <div class="expences-cat__name">Транспорт</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill" style="height:79%;"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+              <div class="expences-cat expences-cat--over-limit">
+                <div class="expences-cat__name">Продукты</div>
+                <div class="expences-cat__icon"><svg class="bytesize-icon bytesize-icon--i-cart"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+    <circle cx="25" cy="27" r="2" />
+    <circle cx="12" cy="27" r="2" />
+</svg>
+                  <div class="expences-cat__icon-fill expences-cat__icon-fill"></div>
+                </div>
+                <div class="expences-cat__val">124 ₽</div>
+                <div class="expences-cat__limit">2 000 ₽</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row__item flex-row__item--w-sidebar">
+            <div class="money-movements">
+              <div class="money-movements__top">
+                <div class="money-movements__title">Промежуточные итоги</div>
+              </div>
+              <div class="money-movements__bottom">
+                <div class="money-movements__period">
+                  <div class="money-movements__period-name">Баланс:</div>
+                  <!--Апрель 2022-->
+                  <div class="money-movements__period-summary">10 000,00 ₽</div>
+                </div>
+                <div class="money-movements__period">
+                  <div class="money-movements__period-name">С начала месяца:</div>
+                </div>
+                <!--Полоски показывают отношение меньшего к большему-->
+                <div class="money-movements-item">
+                  <div class="money-movements-item__info">
+                    <div class="money-movements-item__name">Доход</div>
+                    <div class="money-movements-item__val">13 000,00 ₽</div>
+                  </div>
+                  <div class="money-movements-item__line money-movements-item__line--green">
+                    <div class="money-movements-item__line-fill" style="width:100%;"></div>
+                  </div>
+                </div>
+                <div class="money-movements-item">
+                  <div class="money-movements-item__info">
+                    <div class="money-movements-item__name">Расход</div>
+                    <div class="money-movements-item__val"> -3 000,00 ₽</div>
+                  </div>
+                  <div class="money-movements-item__line money-movements-item__line--red">
+                    <div class="money-movements-item__line-fill" style="width:23%;"></div>
+                  </div>
+                </div>
+                <div class="money-movements-item">
+                  <div class="money-movements-item__info">
+                    <div class="money-movements-item__name">Планируемый расход</div>
+                    <div class="money-movements-item__val"> 15 000,00 ₽</div>
+                  </div>
+                  <div class="money-movements-item__info">
+                    <div class="money-movements-item__name">Остаток</div>
+                    <div class="money-movements-item__val"> 13 000,00 ₽</div>
+                  </div>
+                  <div class="money-movements-item__info">
+                    <div class="money-movements-item__name">Перерасход</div>
+                    <div class="money-movements-item__val"> 0,00 ₽</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="money-movements">
+              <div class="money-movements__top">
+                <div class="money-movements__title">Недавние транзакции</div>
+              </div>
+              <div class="money-movements__bottom money-movements__bottom--h-limited" id="recordsInSidebar">
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Зарплата</div>
+                    <div class="money-movements-item__val green">+15 000 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+                <div class="money-movements-record">
+                  <div class="money-movements-item__info money-movements-item__info--record">
+                    <div class="money-movements-item__name">Продукты</div>
+                    <div class="money-movements-item__val red">-3 142 ₽</div>
+                  </div>
+                  <div class="money-movements-record__comment">Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке</div>
+                  <div class="money-movements-record__date">01.06.21 15:00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-wrap table-wrap--900--sb-t0">
+          <table class="table table--4-col-prdi">
+            <thead class="table-thead">
+              <tr class="table-tr table-tr--head">
+                <th class="table-td table-td--head">Период</th>
+                <th class="table-td table-td--head">Расходы</th>
+                <th class="table-td table-td--head">Доходы</th>
+                <th class="table-td table-td--head">Итог</th>
+              </tr>
+            </thead>
+            <tbody class="table-tbody">
+              <tr class="table-tr">
+                <td class="table-td">Сегодня</td>
+                <td class="table-td red">-2400</td>
+                <td class="table-td green">+1200</td>
+                <td class="table-td red">-1200</td>
+              </tr>
+              <tr class="table-tr">
+                <td class="table-td">Вчера</td>
+                <td class="table-td red">-12000</td>
+                <td class="table-td green">+24000</td>
+                <td class="table-td green">+12000</td>
+              </tr>
+              <tr class="table-tr">
+                <td class="table-td">Последние 7 дней</td>
+                <td class="table-td red">-120000</td>
+                <td class="table-td green">+240000</td>
+                <td class="table-td green">+120000</td>
+              </tr>
+              <tr class="table-tr">
+                <td class="table-td">С начала теущего месяца</td>
+                <td class="table-td red">-12000000</td>
+                <td class="table-td green">+24000000</td>
+                <td class="table-td green">+12000000</td>
+              </tr>
+              <tr class="table-tr">
+                <td class="table-td">6 месяцев</td>
+                <td class="table-td red">-120000000</td>
+                <td class="table-td green">+240000000</td>
+                <td class="table-td green">+120000000</td>
+              </tr>
+              <tr class="table-tr">
+                <td class="table-td">12 месяцев</td>
+                <td class="table-td red">-12000000000</td>
+                <td class="table-td green">+24000000000</td>
+                <td class="table-td green">+12000000000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <!--footer.site-footer
+    .container.container--site-footer
+    	.sf-copyright © 2022 Все права защищены
+    
+    	.sf-menu
+    		a.sf-menu__item(href="")  Доходы
+    		a.sf-menu__item(href="")  Расходы
+    		a.sf-menu__item(href="")  Статистика
+    		a.sf-menu__item(href="")  Настройки
+    
+    	.sf-socials
+    		a.sf-socials-item(href="")  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-bottom:-1px;" xmlns="http://www.w3.org/2000/svg"><path d="M8.438 3.807a3.819 3.819 0 00-3.819 3.818 3.798 3.798 0 003.819 3.818 3.819 3.819 0 003.818-3.818c0-2.092-1.727-3.818-3.819-3.818zm0 6.308a2.487 2.487 0 01-2.49-2.49c0-1.361 1.095-2.457 2.49-2.457a2.451 2.451 0 012.457 2.457c0 1.395-1.096 2.49-2.457 2.49zm4.847-6.441a.893.893 0 00-.896-.897.893.893 0 00-.897.897c0 .498.399.896.897.896a.893.893 0 00.896-.896zm2.524.896c-.067-1.195-.332-2.258-1.196-3.12C13.75.585 12.688.32 11.493.253c-1.23-.067-4.915-.067-6.143 0C4.154.32 3.125.586 2.229 1.449c-.864.863-1.13 1.926-1.196 3.121-.066 1.229-.066 4.914 0 6.143.067 1.195.332 2.225 1.196 3.121.896.863 1.925 1.129 3.12 1.195 1.23.067 4.915.067 6.143 0 1.195-.066 2.258-.332 3.121-1.195.864-.896 1.13-1.926 1.196-3.121.066-1.229.066-4.914 0-6.143zm-1.594 7.438c-.233.664-.764 1.162-1.395 1.428-.996.398-3.32.298-4.383.298-1.095 0-3.42.1-4.382-.299a2.517 2.517 0 01-1.428-1.427c-.398-.963-.299-3.287-.299-4.383 0-1.063-.1-3.387.299-4.383a2.561 2.561 0 011.428-1.394c.963-.399 3.287-.3 4.383-.3 1.062 0 3.386-.099 4.382.3.631.232 1.13.763 1.395 1.394.398.996.299 3.32.299 4.383 0 1.096.1 3.42-.3 4.383z" fill="#6974A9"></path></svg>
+    		a.sf-socials-item(href="")  <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.084 2.537a1.993 1.993 0 00-1.406-1.435C13.418.75 8.438.75 8.438.75s-5.01 0-6.27.352A1.993 1.993 0 00.762 2.537C.41 3.767.41 6.404.41 6.404s0 2.608.352 3.867c.175.704.732 1.231 1.406 1.407 1.26.322 6.27.322 6.27.322s4.98 0 6.24-.322a1.954 1.954 0 001.406-1.407c.352-1.26.352-3.867.352-3.867s0-2.636-.352-3.867zm-9.287 6.24V4.031l4.16 2.373-4.16 2.373z" fill="#6974A9"></path></svg>
+    
+    		a.sf-socials-item(href="")  <svg width="14" height="11" viewBox="0 0 14 11" fill="none" style="margin-top:-1px;"  xmlns="http://www.w3.org/2000/svg"><path d="M13.1953 1.45703C13.3594 0.691406 12.9219 0.390625 12.4297 0.582031L1.54688 4.76562C0.808594 5.06641 0.835938 5.47656 1.4375 5.66797L4.19922 6.51562L10.6523 2.46875C10.9531 2.25 11.2539 2.38672 11.0078 2.57812L5.78516 7.28125L5.59375 10.1523C5.89453 10.1523 6.00391 10.043 6.16797 9.87891L7.50781 8.56641L10.3242 10.6445C10.8438 10.9453 11.2266 10.7812 11.3633 10.1797L13.1953 1.45703Z" fill="#6974A9"></path></svg>
+    -->
+    <div class="modal modal-accept" id="modal-accept">
+      <div class="modal-inner">
+        <div class="modal-title modal-title--bold">Вы действительно хотите удалить запись "01.06.21 15:00 - 2400 - Зарплата"?</div>
+        <div class="modal-accept-flex">
+          <div class="modal-accept-flex__btn btn--green-h btn">ДА</div>
+          <div class="modal-accept-flex__btn btn--red-h btn">НЕТ</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal modal-transaction" id="modal-edit-income">
+      <div class="modal-inner">
+        <div class="modal-title modal-title--pin-top">Редактировать</div>
+        <div class="modal-transaction__form">
+          <div class="inp-wrap">
+            <input class="inp" type="text" name="" placeholder="Сумма">
+          </div>
+          <div class="inp-wrap">
+            <textarea class="inp" name="" placeholder="Описание"></textarea>
+          </div>
+          <div class="inp-wrap">
+            <input class="inp js-date-time" type="text" name="" placeholder="Дата">
+          </div>
+          <div class="inp-wrap">
+            <select class="js-custom-select">
+              <option>Зарплата</option>
+              <option>Подработка</option>
+              <option>Возвращённый долг</option>
+            </select>
+          </div>
+          <div class="inp-wrap">
+            <div class="custom-switch-wrap">
+              <div class="custom-switch-name">Я действительно хочу удалить данную запись</div>
+              <label class="custom-switch">
+                <input type="checkbox" name="">
+                <div class="custom-switch__bg"></div>
+                <div class="custom-switch__control"></div>
+              </label>
+            </div>
+          </div>
+          <div class="modal-buttons-flex">
+            <div class="btn btn--big btn--green-h">Сохранить</div>
+            <div class="btn btn--svg-icon btn--big btn--red-h"><svg class="bytesize-icon bytesize-icon--i-trash"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
+</svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal modal-transaction" id="modal-add-income">
+      <div class="modal-inner">
+        <div class="modal-title modal-title--pin-top">Добавить</div>
+        <div class="modal-transaction__form">
+          <div class="inp-wrap inp-wrap--with-currency">
+            <input class="inp js-simple-calc-inp" type="text" name="" placeholder="0">
+            <div class="inp-currency"><span>₽</span></div>
+            <!--.simple-calc.js-simple-calc
+            button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function="/")
+            	span ÷
+            button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function="*")
+            	span ×
+            button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function="-")
+            	span -
+            button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function="+")
+            	span +
+            button.simple-calc__square.js-simple-calc-btn(data-function="7")
+            	span 7
+            button.simple-calc__square.js-simple-calc-btn(data-function="4")
+            	span 4
+            button.simple-calc__square.js-simple-calc-btn(data-function="1")
+            	span 1
+            button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--empty(data-function="")
+            	span
+            button.simple-calc__square.js-simple-calc-btn(data-function="8")
+            	span 8
+            button.simple-calc__square.js-simple-calc-btn(data-function="5")
+            	span 5
+            button.simple-calc__square.js-simple-calc-btn(data-function="2")
+            	span 2
+            button.simple-calc__square.js-simple-calc-btn(data-function="0")
+            	span 0
+            button.simple-calc__square.js-simple-calc-btn(data-function="9")
+            	span 9
+            button.simple-calc__square.js-simple-calc-btn(data-function="6")
+            	span 6
+            button.simple-calc__square.js-simple-calc-btn(data-function="3")
+            	span 3
+            button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function=".")
+            	span ,
+            button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator.simple-calc__square--clear(data-function="c")
+            	span C
+            button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--empty(data-function="")
+            	span
+            button.simple-calc__square.simple-calc__square--disabled.js-simple-calc-btn.simple-calc__square--double.simple-calc__square.simple-calc__square.simple-calc__square--confirmation(data-function="=")
+            	span =
+            
+            -->
+          </div>
+          <div class="inp-wrap">
+            <textarea class="inp" name="" maxlength="1000" placeholder="Описание"></textarea>
+          </div>
+          <div class="inp-wrap">
+            <input class="inp js-date-time" type="text" name="" placeholder="Дата">
+          </div>
+          <div class="inp-wrap">
+            <select class="js-custom-select">
+              <option>Зарплата</option>
+              <option>Подработка</option>
+              <option>Возвращённый долг</option>
+            </select>
+          </div>
+          <div class="modal-buttons-flex">
+            <div class="btn btn--big btn--green-h">Сохранить</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal modal-transaction" id="modal-edit-income-cat">
+      <div class="modal-inner">
+        <div class="modal-title modal-title--pin-top">Редактировать</div>
+        <div class="modal-transaction__form">
+          <div class="inp-wrap">
+            <input class="inp" type="text" name="" placeholder="Название">
+          </div>
+          <div class="inp-wrap">
+            <input class="inp" type="text" name="" placeholder="Ожидание на месяц">
+          </div>
+          <div class="inp-wrap">
+            <div class="custom-switch-wrap">
+              <div class="custom-switch-name">Я действительно хочу удалить данную запись</div>
+              <label class="custom-switch">
+                <input type="checkbox" name="">
+                <div class="custom-switch__bg"></div>
+                <div class="custom-switch__control"></div>
+              </label>
+            </div>
+          </div>
+          <div class="modal-buttons-flex">
+            <div class="btn btn--big btn--green-h">Сохранить</div>
+            <div class="btn btn--svg-icon btn--big btn--red-h"><svg class="bytesize-icon bytesize-icon--i-trash"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
+</svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal modal-transaction" id="modal-add-income-cat">
+      <div class="modal-inner">
+        <div class="modal-title modal-title--pin-top">Добавить</div>
+        <div class="modal-transaction__form">
+          <div class="inp-wrap">
+            <input class="inp" type="text" name="" placeholder="Название">
+          </div>
+          <div class="inp-wrap">
+            <input class="inp" type="text" name="" placeholder="Ожидание на месяц">
+          </div>
+          <div class="modal-buttons-flex">
+            <div class="btn btn--big btn--green-h">Сохранить</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      localSwitchOptionsArray.forEach(element => {
+      	if (localStorage.hasOwnProperty(element['localStoragePropName'])) {
+      		let optionInStorage = localStorage.getItem(element['localStoragePropName']) === element['enabledVal'];
+      		if (optionInStorage) {
+      			//$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+      			$(element['switchSelector']).prop("checked", true);
+      		}
+      		else {
+      			//$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+      			$(element['switchSelector']).prop("checked", false);
+      		}
+      	}
+      	$('body').on('change', element['switchSelector'], function () {
+      		if ($(this).is(':checked')) {
+      			$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+      			localStorage.setItem(element['localStoragePropName'], element['enabledVal']);
+      		}
+      		else {
+      			$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+      			localStorage.setItem(element['localStoragePropName'], 'false');
+      		}
+      	});
+      
+      });
+      
+    </script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

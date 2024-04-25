@@ -1,0 +1,98 @@
+doctype html
+
+block vars
+include ../components/_mixins
+
+html(lang="ru")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(name="description" content="")
+		meta(name="keywords" content="")
+		meta(property="og:image" content="images/logo.svg")
+		meta(name="format-detection" content="telephone=no")
+		script(src="js/jquery-3.3.1.min.js")
+		script.
+			var localSwitchOptionsArray = [{
+				'changeClassTargetSelector': 'html',
+				'changableClass': 'dark-theme',
+				'localStoragePropName': 'darkTheme',
+				'enabledVal': 'true',
+				'switchSelector': '.js-change-local-option[name="dark-theme-switch"]'
+			},
+			{
+				'changeClassTargetSelector': 'html',
+				'changableClass': 'html--hide-logo',
+				'localStoragePropName': 'hideLogo',
+				'enabledVal': 'true',
+				'switchSelector': '.js-change-local-option[name="show-logo-switch"]'
+			}];
+
+
+			localSwitchOptionsArray.forEach(element => {
+				/*$('body').on('change', element['switchSelector'], function () {
+					if ($(this).is(':checked')) {
+						$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+						localStorage.setItem(element['localStoragePropName'], element['enabledVal']);
+					}
+					else {
+						$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+						localStorage.setItem(element['localStoragePropName'], 'false');
+					}
+				});
+				*/
+			//отработает при загрузке страницы
+				if (localStorage.hasOwnProperty(element['localStoragePropName'])) {
+					let optionInStorage = localStorage.getItem(element['localStoragePropName']) === element['enabledVal'];
+					if (optionInStorage) {
+						$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+						//$(element['switchSelector']).prop("checked", true);
+					}
+					else {
+						$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+						//$(element['switchSelector']).prop("checked", false);
+					}
+				}
+			});
+
+		link(href="css/main.css" rel="stylesheet")
+
+		//title= `${page.title}`
+
+	body
+
+		main.main
+			block main
+
+
+		block modals
+		script.
+
+			localSwitchOptionsArray.forEach(element => {
+				if (localStorage.hasOwnProperty(element['localStoragePropName'])) {
+					let optionInStorage = localStorage.getItem(element['localStoragePropName']) === element['enabledVal'];
+					if (optionInStorage) {
+						//$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+						$(element['switchSelector']).prop("checked", true);
+					}
+					else {
+						//$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+						$(element['switchSelector']).prop("checked", false);
+					}
+				}
+				$('body').on('change', element['switchSelector'], function () {
+					if ($(this).is(':checked')) {
+						$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+						localStorage.setItem(element['localStoragePropName'], element['enabledVal']);
+					}
+					else {
+						$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+						localStorage.setItem(element['localStoragePropName'], 'false');
+					}
+				});
+
+			});
+
+		script(src="js/main.js")
+
+		block scripts

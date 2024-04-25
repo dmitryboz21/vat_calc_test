@@ -1,0 +1,150 @@
+extends layouts/default
+
+block vars
+	-
+		const page = {
+			title: 'index.html'
+		};
+
+
+
+
+block main
+	.container
+		.flex-row
+			.flex-row__item.flex-row__item--w-main
+				.expences-cats
+					each val in [1, 2, 3, 4]
+						.expences-cat
+							.expences-cat__name Продукты
+							.expences-cat__icon
+								include ../img/bytesize-icons/cart.svg
+								.expences-cat__icon-fill(style="height:0;")
+							.expences-cat__val 124 ₽
+							.expences-cat__limit 2 000 ₽
+						.expences-cat
+							.expences-cat__name Еда вне дома
+							.expences-cat__icon
+								include ../img/bytesize-icons/cart.svg
+								.expences-cat__icon-fill(style="height:33%;")
+							.expences-cat__val 124 ₽
+							.expences-cat__limit 2 000 ₽
+						.expences-cat
+							.expences-cat__name Транспорт
+							.expences-cat__icon
+								include ../img/bytesize-icons/cart.svg
+								.expences-cat__icon-fill(style="height:79%;")
+							.expences-cat__val 124 ₽
+							.expences-cat__limit 2 000 ₽
+						.expences-cat.expences-cat--over-limit
+							.expences-cat__name Продукты
+							.expences-cat__icon
+								include ../img/bytesize-icons/cart.svg
+								.expences-cat__icon-fill.expences-cat__icon-fill
+							.expences-cat__val 124 ₽
+							.expences-cat__limit 2 000 ₽
+
+
+			.flex-row__item.flex-row__item--w-sidebar
+
+				.money-movements
+					.money-movements__top
+						.money-movements__title Промежуточные итоги
+					.money-movements__bottom
+						.money-movements__period
+							.money-movements__period-name Баланс:
+							//Апрель 2022
+							.money-movements__period-summary 10 000,00 ₽
+						.money-movements__period
+							.money-movements__period-name С начала месяца:
+
+						//Полоски показывают отношение меньшего к большему
+						.money-movements-item
+							.money-movements-item__info
+								.money-movements-item__name Доход
+								.money-movements-item__val 13 000,00 ₽
+							.money-movements-item__line.money-movements-item__line--green
+								.money-movements-item__line-fill(style="width:100%;")
+
+						.money-movements-item
+							.money-movements-item__info
+								.money-movements-item__name Расход
+								.money-movements-item__val  -3 000,00 ₽
+							.money-movements-item__line.money-movements-item__line--red
+								.money-movements-item__line-fill(style="width:23%;")
+
+						.money-movements-item
+							.money-movements-item__info
+								.money-movements-item__name Планируемый расход
+								.money-movements-item__val  15 000,00 ₽
+							.money-movements-item__info
+								.money-movements-item__name Остаток
+								.money-movements-item__val  13 000,00 ₽
+							.money-movements-item__info
+								.money-movements-item__name Перерасход
+								.money-movements-item__val  0,00 ₽
+
+				.money-movements
+					.money-movements__top
+						.money-movements__title Недавние транзакции
+					.money-movements__bottom.money-movements__bottom--h-limited#recordsInSidebar
+						each val in [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+							.money-movements-record
+								.money-movements-item__info.money-movements-item__info--record
+									.money-movements-item__name Продукты
+									.money-movements-item__val.red -3 142 ₽
+								.money-movements-record__comment Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке
+								.money-movements-record__date 01.06.21 15:00
+							.money-movements-record
+								.money-movements-item__info.money-movements-item__info--record
+									.money-movements-item__name Зарплата
+									.money-movements-item__val.green +15 000 ₽
+								.money-movements-record__comment Комментарий
+								.money-movements-record__date 01.06.21 15:00
+							.money-movements-record
+								.money-movements-item__info.money-movements-item__info--record
+									.money-movements-item__name Продукты
+									.money-movements-item__val.red -3 142 ₽
+								.money-movements-record__comment Комментарий к покупке Комментарий к покупке Комментарий к покупке Комментарий к покупке
+								.money-movements-record__date 01.06.21 15:00
+
+
+		.table-wrap.table-wrap--900--sb-t0
+			table.table.table--4-col-prdi
+				thead.table-thead
+					tr.table-tr.table-tr--head
+						th.table-td.table-td--head Период
+						th.table-td.table-td--head Расходы
+						th.table-td.table-td--head Доходы
+						th.table-td.table-td--head Итог
+				tbody.table-tbody
+					tr.table-tr
+						td.table-td Сегодня
+						td.table-td.red -2400
+						td.table-td.green +1200
+						td.table-td.red -1200
+					tr.table-tr
+						td.table-td Вчера
+						td.table-td.red -12000
+						td.table-td.green +24000
+						td.table-td.green +12000
+					tr.table-tr
+						td.table-td Последние 7 дней
+						td.table-td.red -120000
+						td.table-td.green +240000
+						td.table-td.green +120000
+					tr.table-tr
+						td.table-td С начала теущего месяца
+						td.table-td.red -12000000
+						td.table-td.green +24000000
+						td.table-td.green +12000000
+					tr.table-tr
+						td.table-td 6 месяцев
+						td.table-td.red -120000000
+						td.table-td.green +240000000
+						td.table-td.green +120000000
+					tr.table-tr
+						td.table-td 12 месяцев
+						td.table-td.red -12000000000
+						td.table-td.green +24000000000
+						td.table-td.green +12000000000

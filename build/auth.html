@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta property="og:image" content="images/logo.svg">
+    <meta name="format-detection" content="telephone=no">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+      var localSwitchOptionsArray = [{
+      	'changeClassTargetSelector': 'html',
+      	'changableClass': 'dark-theme',
+      	'localStoragePropName': 'darkTheme',
+      	'enabledVal': 'true',
+      	'switchSelector': '.js-change-local-option[name="dark-theme-switch"]'
+      },
+      {
+      	'changeClassTargetSelector': 'html',
+      	'changableClass': 'html--hide-logo',
+      	'localStoragePropName': 'hideLogo',
+      	'enabledVal': 'true',
+      	'switchSelector': '.js-change-local-option[name="show-logo-switch"]'
+      }];
+      
+      
+      localSwitchOptionsArray.forEach(element => {
+      	/*$('body').on('change', element['switchSelector'], function () {
+      		if ($(this).is(':checked')) {
+      			$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+      			localStorage.setItem(element['localStoragePropName'], element['enabledVal']);
+      		}
+      		else {
+      			$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+      			localStorage.setItem(element['localStoragePropName'], 'false');
+      		}
+      	});
+      	*/
+      //отработает при загрузке страницы
+      	if (localStorage.hasOwnProperty(element['localStoragePropName'])) {
+      		let optionInStorage = localStorage.getItem(element['localStoragePropName']) === element['enabledVal'];
+      		if (optionInStorage) {
+      			$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+      			//$(element['switchSelector']).prop("checked", true);
+      		}
+      		else {
+      			$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+      			//$(element['switchSelector']).prop("checked", false);
+      		}
+      	}
+      });
+      
+    </script>
+    <link href="css/main.css" rel="stylesheet">
+    <!--title= `${page.title}`-->
+  </head>
+  <body>
+    <main class="main">
+      <div class="loading">
+        <div class="loading-icon"><img src="../img/loading.svg" alt=""></div>
+      </div>
+      <div class="main-inner">
+        <div class="container">
+          <div class="flex-row flex-row--centred">
+            <div class="flex-row__item flex-row__item--w50">
+              <div class="tabs-controls-wrap">
+                <div class="tabs-controls" id="tabs-controls-stats" data-target="#tabs-stats">
+                  <div class="tabs-controls-item tabs-controls-item--active">Авторизация</div>
+                  <div class="tabs-controls-item">Регистрация</div>
+                  <div class="tabs-controls-item">Забыл пароль</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--
+          input.inp.js-date-time(type="text", name="" value="1243")
+          input.inp(type="text", name="" value="1243")
+          input.inp(type="text", name="" placeholder="1243")
+          -->
+          <div class="tabs" id="tabs-stats">
+            <div class="tabs__tab tabs__tab--active">
+              <div class="flex-row flex-row--centred">
+                <div class="flex-row__item flex-row__item--w50">
+                  <form class="js-need-validate-form settings-form">
+                    <div class="settings-form__title">Вход в аккаунт</div>
+                    <div class="inp-wrap">
+                      <div class="inp-name">Email</div>
+                      <input class="inp" type="email" name="email" data-validate-type="email" placeholder="example@mail.ru" data-old-required="true">
+                    </div>
+                    <div class="inp-wrap">
+                      <div class="inp-name">Пароль</div>
+                      <input class="inp js-pwd-inp" type="password" data-validate-type="non-empty" name="password" placeholder="" data-old-required="true">
+                    </div>
+                    <div class="inp-wrap">
+                      <div class="custom-switch-wrap">
+                        <div class="custom-switch-name">Показать пароль</div>
+                        <label class="custom-switch">
+                          <input class="js-show-password-chb" type="checkbox" name="">
+                          <div class="custom-switch__bg"></div>
+                          <div class="custom-switch__control"></div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="inp-wrap">
+                      <button class="btn btn--w200 btn--big btn--green-h" type="submit">Войти</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="tabs__tab">
+              <div class="flex-row flex-row--centred">
+                <div class="flex-row__item flex-row__item--w50">
+                  <form class="js-need-validate-form settings-form">
+                    <div class="settings-form__title">Создание аккаунта</div>
+                    <div class="inp-wrap">
+                      <div class="inp-name">Email</div>
+                      <input class="inp" type="email" name="email" data-validate-type="email" placeholder="example@mail.ru" data-old-required="true">
+                    </div>
+                    <!--.inp-wrap
+                    .inp-name Логин
+                    input.inp(type="text", name="username", data-validate-type='non-empty' placeholder="user123", data-old-required="true")
+                    -->
+                    <div class="inp-wrap">
+                      <div class="inp-name">Введите пароль</div>
+                      <input class="inp js-pwd-inp" id="register-pwd-1" type="password" name="password" data-validate-type="password" placeholder="" data-old-required="true">
+                    </div>
+                    <div class="inp-wrap">
+                      <div class="inp-name">Повторите пароль</div>
+                      <input class="inp js-pwd-inp" type="password" data-validate-type="2ndPassword" data-first-pwd-inp-selector="#register-pwd-1" name="re-enter-password" placeholder="" data-old-required="true">
+                    </div>
+                    <div class="inp-wrap">
+                      <div class="custom-switch-wrap">
+                        <div class="custom-switch-name">Показать</div>
+                        <label class="custom-switch">
+                          <input class="js-show-password-chb" type="checkbox" name="">
+                          <div class="custom-switch__bg"></div>
+                          <div class="custom-switch__control"></div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="inp-wrap">
+                      <button class="btn btn--w200 btn--big btn--green-h" type="submit">Регистрация</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="tabs__tab">
+              <div class="flex-row flex-row--centred">
+                <div class="flex-row__item flex-row__item--w50">
+                  <form class="js-need-validate-form settings-form">
+                    <div class="settings-form__title">Сброс пароля</div>
+                    <div class="inp-wrap">
+                      <div class="inp-name">Email</div>
+                      <input class="inp" type="email" name="email" data-validate-type="email" placeholder="example@mail.ru" data-old-required="true">
+                    </div>
+                    <div class="inp-wrap">
+                      <button class="btn btn--w200 btn--big btn--green-h" type="submit">Выполнить сброс</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      localSwitchOptionsArray.forEach(element => {
+      	if (localStorage.hasOwnProperty(element['localStoragePropName'])) {
+      		let optionInStorage = localStorage.getItem(element['localStoragePropName']) === element['enabledVal'];
+      		if (optionInStorage) {
+      			//$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+      			$(element['switchSelector']).prop("checked", true);
+      		}
+      		else {
+      			//$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+      			$(element['switchSelector']).prop("checked", false);
+      		}
+      	}
+      	$('body').on('change', element['switchSelector'], function () {
+      		if ($(this).is(':checked')) {
+      			$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+      			localStorage.setItem(element['localStoragePropName'], element['enabledVal']);
+      		}
+      		else {
+      			$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+      			localStorage.setItem(element['localStoragePropName'], 'false');
+      		}
+      	});
+      
+      });
+      
+    </script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

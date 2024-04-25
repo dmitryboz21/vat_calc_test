@@ -1,0 +1,94 @@
+extends layouts/min
+
+block vars
+	-
+		const page = {
+			title: 'index.html'
+		};
+
+
+
+
+block main
+	.loading
+		.loading-icon
+			img(src="../img/loading.svg", alt="")
+	.main-inner
+		.container
+			.flex-row.flex-row--centred
+				.flex-row__item.flex-row__item--w50
+					.tabs-controls-wrap
+						.tabs-controls#tabs-controls-stats(data-target="#tabs-stats")
+							.tabs-controls-item.tabs-controls-item--active Авторизация
+							.tabs-controls-item Регистрация
+							.tabs-controls-item Забыл пароль
+
+
+			//
+				input.inp.js-date-time(type="text", name="" value="1243")
+				input.inp(type="text", name="" value="1243")
+				input.inp(type="text", name="" placeholder="1243")
+			.tabs#tabs-stats
+				.tabs__tab.tabs__tab--active
+					.flex-row.flex-row--centred
+						.flex-row__item.flex-row__item--w50
+							form.js-need-validate-form.settings-form
+								.settings-form__title Вход в аккаунт
+								.inp-wrap
+									.inp-name Email
+									input.inp(type="email", name="email", data-validate-type="email"  placeholder="example@mail.ru", data-old-required="true")
+								.inp-wrap
+									.inp-name Пароль
+									input.inp.js-pwd-inp(type="password" data-validate-type='non-empty' name="password", placeholder="", data-old-required="true")
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Показать пароль
+										label.custom-switch
+											input.js-show-password-chb(type="checkbox", name="")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									button.btn.btn--w200.btn--big.btn--green-h(type="submit") Войти
+
+
+
+				.tabs__tab
+					.flex-row.flex-row--centred
+						.flex-row__item.flex-row__item--w50
+							form.js-need-validate-form.settings-form
+								.settings-form__title Создание аккаунта
+								.inp-wrap
+									.inp-name Email
+									input.inp(type="email", name="email", data-validate-type="email", placeholder="example@mail.ru", data-old-required="true")
+								//.inp-wrap
+									.inp-name Логин
+									input.inp(type="text", name="username", data-validate-type='non-empty' placeholder="user123", data-old-required="true")
+								.inp-wrap
+									.inp-name Введите пароль
+									input.inp.js-pwd-inp#register-pwd-1(type="password", name="password", data-validate-type='password' placeholder="", data-old-required="true")
+								.inp-wrap
+									.inp-name Повторите пароль
+									input.inp.js-pwd-inp(type="password",data-validate-type='2ndPassword' data-first-pwd-inp-selector="#register-pwd-1" name="re-enter-password", placeholder="", data-old-required="true")
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Показать
+										label.custom-switch
+											input.js-show-password-chb(type="checkbox", name="")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									button.btn.btn--w200.btn--big.btn--green-h(type="submit") Регистрация
+				.tabs__tab
+					.flex-row.flex-row--centred
+						.flex-row__item.flex-row__item--w50
+							form.js-need-validate-form.settings-form
+								.settings-form__title Сброс пароля
+								.inp-wrap
+									.inp-name Email
+									input.inp(type="email", name="email", data-validate-type="email", placeholder="example@mail.ru", data-old-required="true")
+								.inp-wrap
+									button.btn.btn--w200.btn--big.btn--green-h(type="submit") Выполнить сброс
+
+
+
+

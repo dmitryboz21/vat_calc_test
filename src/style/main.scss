@@ -1,0 +1,34 @@
+
+@import "partials/_var";
+@import "partials/reset.css";
+@import "partials/fonts.css";
+@import "libs/jquery.fancybox.min.css";
+//@import "partials/slick.css";
+@import "libs/simplebar.css";
+@import "libs/flatpickr.min.css";
+@import "libs/flatpickr-custom.scss";
+
+@import "libs/select2.scss";
+@import "libs/spectrum.scss";
+@import "libs/sweetalert2.scss";
+
+/* my style */
+
+
+@import "partials/mixin";
+@import "partials/components";
+@import "partials/header";
+@import "partials/main";
+@import "partials/footer";
+@import "partials/main-adaptive";
+
+@import "partials/pagi.scss";
+
+@import "partials/main-components.scss";
+@import "partials/settings.scss";
+
+
+
+
+
+@import "partials/dark-theme.scss";

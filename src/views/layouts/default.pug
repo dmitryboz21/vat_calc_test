@@ -1,0 +1,235 @@
+doctype html
+
+block vars
+include ../components/_mixins
+
+html(lang="ru")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(name="description" content="")
+		meta(name="keywords" content="")
+		meta(property="og:image" content="images/logo.svg")
+		meta(name="format-detection" content="telephone=no")
+		script(src="js/jquery-3.3.1.min.js")
+		script.
+			var localSwitchOptionsArray = [{
+				'changeClassTargetSelector': 'html',
+				'changableClass': 'dark-theme',
+				'localStoragePropName': 'darkTheme',
+				'enabledVal': 'true',
+				'switchSelector': '.js-change-local-option[name="dark-theme-switch"]'
+			},
+			{
+				'changeClassTargetSelector': 'html',
+				'changableClass': 'html--hide-logo',
+				'localStoragePropName': 'hideLogo',
+				'enabledVal': 'true',
+				'switchSelector': '.js-change-local-option[name="show-logo-switch"]'
+			}];
+
+
+			localSwitchOptionsArray.forEach(element => {
+				/*$('body').on('change', element['switchSelector'], function () {
+					if ($(this).is(':checked')) {
+						$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+						localStorage.setItem(element['localStoragePropName'], element['enabledVal']);
+					}
+					else {
+						$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+						localStorage.setItem(element['localStoragePropName'], 'false');
+					}
+				});
+				*/
+			//отработает при загрузке страницы
+				if (localStorage.hasOwnProperty(element['localStoragePropName'])) {
+					let optionInStorage = localStorage.getItem(element['localStoragePropName']) === element['enabledVal'];
+					if (optionInStorage) {
+						$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+						//$(element['switchSelector']).prop("checked", true);
+					}
+					else {
+						$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+						//$(element['switchSelector']).prop("checked", false);
+					}
+				}
+			});
+
+		link(href="css/main.css" rel="stylesheet")
+
+		//title= `${page.title}`
+
+	body
+		block header
+			include ../partials/_header
+
+		main.main
+			block main
+
+		block footer
+			include ../partials/_footer
+
+
+
+		block modals
+			.modal.modal-accept#modal-accept
+				.modal-inner
+					.modal-title.modal-title--bold Вы действительно хотите удалить запись "01.06.21 15:00 - 2400 - Зарплата"?
+					.modal-accept-flex
+						.modal-accept-flex__btn.btn--green-h.btn ДА
+						.modal-accept-flex__btn.btn--red-h.btn НЕТ
+
+			.modal.modal-transaction#modal-edit-income
+				.modal-inner
+					.modal-title.modal-title--pin-top Редактировать
+					.modal-transaction__form
+						.inp-wrap
+							input.inp(type="text", name="" placeholder="Сумма")
+						.inp-wrap
+							textarea.inp(name="" placeholder="Описание")
+						.inp-wrap
+							input.inp.js-date-time(type="text", name=""  placeholder="Дата")
+						.inp-wrap
+							select.js-custom-select
+								option Зарплата
+								option Подработка
+								option Возвращённый долг
+						.inp-wrap
+							.custom-switch-wrap
+								.custom-switch-name Я действительно хочу удалить данную запись
+								label.custom-switch
+									input(type="checkbox", name="")
+									.custom-switch__bg
+									.custom-switch__control
+
+						.modal-buttons-flex
+							.btn.btn--big.btn--green-h Сохранить
+							.btn.btn--svg-icon.btn--big.btn--red-h
+								include ../../img/bytesize-icons/trash.svg
+
+			.modal.modal-transaction#modal-add-income
+				.modal-inner
+					.modal-title.modal-title--pin-top Добавить
+					.modal-transaction__form
+						.inp-wrap.inp-wrap--with-currency
+							input.inp.js-simple-calc-inp(type="text", name="" placeholder="0")
+							.inp-currency
+								span ₽
+							//.simple-calc.js-simple-calc
+								button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function="/")
+									span ÷
+								button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function="*")
+									span ×
+								button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function="-")
+									span -
+								button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function="+")
+									span +
+								button.simple-calc__square.js-simple-calc-btn(data-function="7")
+									span 7
+								button.simple-calc__square.js-simple-calc-btn(data-function="4")
+									span 4
+								button.simple-calc__square.js-simple-calc-btn(data-function="1")
+									span 1
+								button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--empty(data-function="")
+									span
+								button.simple-calc__square.js-simple-calc-btn(data-function="8")
+									span 8
+								button.simple-calc__square.js-simple-calc-btn(data-function="5")
+									span 5
+								button.simple-calc__square.js-simple-calc-btn(data-function="2")
+									span 2
+								button.simple-calc__square.js-simple-calc-btn(data-function="0")
+									span 0
+								button.simple-calc__square.js-simple-calc-btn(data-function="9")
+									span 9
+								button.simple-calc__square.js-simple-calc-btn(data-function="6")
+									span 6
+								button.simple-calc__square.js-simple-calc-btn(data-function="3")
+									span 3
+								button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator(data-function=".")
+									span ,
+								button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--operator.simple-calc__square--clear(data-function="c")
+									span C
+								button.simple-calc__square.js-simple-calc-btn.simple-calc__square.simple-calc__square--empty(data-function="")
+									span
+								button.simple-calc__square.simple-calc__square--disabled.js-simple-calc-btn.simple-calc__square--double.simple-calc__square.simple-calc__square.simple-calc__square--confirmation(data-function="=")
+									span =
+
+						.inp-wrap
+							textarea.inp(name="" maxlength="1000" placeholder="Описание")
+						.inp-wrap
+							input.inp.js-date-time(type="text", name=""  placeholder="Дата")
+						.inp-wrap
+							select.js-custom-select
+								option Зарплата
+								option Подработка
+								option Возвращённый долг
+
+						.modal-buttons-flex
+							.btn.btn--big.btn--green-h Сохранить
+
+
+
+			.modal.modal-transaction#modal-edit-income-cat
+				.modal-inner
+					.modal-title.modal-title--pin-top Редактировать
+					.modal-transaction__form
+						.inp-wrap
+							input.inp(type="text", name="" placeholder="Название")
+						.inp-wrap
+							input.inp(type="text", name="" placeholder="Ожидание на месяц")
+						.inp-wrap
+							.custom-switch-wrap
+								.custom-switch-name Я действительно хочу удалить данную запись
+								label.custom-switch
+									input(type="checkbox", name="")
+									.custom-switch__bg
+									.custom-switch__control
+
+						.modal-buttons-flex
+							.btn.btn--big.btn--green-h Сохранить
+							.btn.btn--svg-icon.btn--big.btn--red-h
+								include  ../../img/bytesize-icons/trash.svg
+
+			.modal.modal-transaction#modal-add-income-cat
+				.modal-inner
+					.modal-title.modal-title--pin-top Добавить
+					.modal-transaction__form
+						.inp-wrap
+							input.inp(type="text", name="" placeholder="Название")
+						.inp-wrap
+							input.inp(type="text", name="" placeholder="Ожидание на месяц")
+
+						.modal-buttons-flex
+							.btn.btn--big.btn--green-h Сохранить
+
+		script.
+
+			localSwitchOptionsArray.forEach(element => {
+				if (localStorage.hasOwnProperty(element['localStoragePropName'])) {
+					let optionInStorage = localStorage.getItem(element['localStoragePropName']) === element['enabledVal'];
+					if (optionInStorage) {
+						//$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+						$(element['switchSelector']).prop("checked", true);
+					}
+					else {
+						//$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+						$(element['switchSelector']).prop("checked", false);
+					}
+				}
+				$('body').on('change', element['switchSelector'], function () {
+					if ($(this).is(':checked')) {
+						$(element['changeClassTargetSelector']).addClass(element['changableClass']);
+						localStorage.setItem(element['localStoragePropName'], element['enabledVal']);
+					}
+					else {
+						$(element['changeClassTargetSelector']).removeClass(element['changableClass']);
+						localStorage.setItem(element['localStoragePropName'], 'false');
+					}
+				});
+
+			});
+
+		script(src="js/main.js")
+
+		block scripts

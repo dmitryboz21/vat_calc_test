@@ -1,0 +1,798 @@
+extends layouts/default
+
+block vars
+	-
+		const page = {
+			title: 'index.html'
+		};
+
+
+
+
+block main
+	.loading
+		.loading-icon
+			img(src="../img/loading.svg", alt="")
+	.main-inner
+		.container
+
+			.date-range-selector
+				.date-range-selector__item.date-range-selector__item--from
+					.inp-wrap
+						input.inp.js-date-time(type="text", name=""  placeholder="От")
+				.date-range-selector__delimiter
+				.date-range-selector__item.date-range-selector__item--to
+					.inp-wrap
+						input.inp.js-date-time(type="text", name=""  placeholder="До")
+				.date-selector-btn-wrap
+					.date-selector-btn.btn.btn--green-h.btn--slim Применить
+					.date-selector-btn.btn.btn--slim Сегодня
+					.date-selector-btn.btn.btn--slim Неделя
+					.date-selector-btn.btn.btn--slim Месяц
+					.date-selector-btn.btn.btn--slim 6 Месяцев
+					.date-selector-btn.btn.btn--slim Год
+
+			.tabs-controls-wrap
+				.tabs-controls#tabs-controls-stats(data-target="#tabs-stats")
+					.tabs-controls-item.tabs-controls-item--active Общие
+					.tabs-controls-item По категориям (Текст)
+					.tabs-controls-item По категориям (Графики)
+
+
+			//
+				input.inp.js-date-time(type="text", name="" value="1243")
+				input.inp(type="text", name="" value="1243")
+				input.inp(type="text", name="" placeholder="1243")
+			.tabs#tabs-stats
+				.tabs__tab.tabs__tab--active
+					.table-wrap.table-wrap--type-2.table-wrap--900--sb-t0
+						table.table.table--4-col-prdi
+							thead.table-thead
+								tr.table-tr.table-tr--head
+									th.table-td.table-td--head Период
+									th.table-td.table-td--head Расходы
+									th.table-td.table-td--head Доходы
+									th.table-td.table-td--head Итог
+							tbody.table-tbody
+								tr.table-tr
+									td.table-td За период
+									td.table-td.red -12000000000
+									td.table-td.green +24000000000
+									td.table-td.green +12000000000
+
+					.charts
+						.charts__row
+						.charts__row
+							.charts__col.charts__col--w100
+								.charts__title.red Расходы за период
+								.charts__canvas-wrap.charts__canvas-wrap--rectangle-50
+									canvas.charts__canvas#periodExpencesLines
+
+						.charts__row
+							.charts__col.charts__col--w100
+								.charts__title Cводная статистика за период
+								.charts__canvas-wrap.charts__canvas-wrap--rectangle-50
+									canvas.charts__canvas#periodSummaryLines
+
+						//.charts__row
+							.charts__col.charts__col--w100
+								.charts__title Статистика баланса за период
+								.charts__canvas-wrap.charts__canvas-wrap--rectangle-50
+									canvas.charts__canvas#periodBalanceLines
+
+						//.charts__row
+							.charts__col.charts__col--w100
+								.charts__title.green Доходы за период
+								.charts__canvas-wrap.charts__canvas-wrap--rectangle-50
+									canvas.charts__canvas#periodIncomesLines
+
+
+					//
+						.table-wrap.table-wrap--type-2.js-table-scrollbar.js-table-scrollbar--stats-1
+							table.table.table-incomes
+								thead.table-thead
+									tr.table-tr.table-tr--head
+										th.table-td.table-td--head Дата
+										th.table-td.table-td--head Сумма
+										th.table-td.table-td--head Категория
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+
+						.table-wrap.table-wrap--type-2.js-table-scrollbar.js-table-scrollbar--incomes-1
+
+							table.table.table-incomes
+								thead.table-thead
+									tr.table-tr.table-tr--head
+										th.table-td.table-td--head Дата
+										th.table-td.table-td--head Сумма
+										th.table-td.table-td--head Категория
+								tbody.table-tbody
+									tr.table-tr.table-tr--clickable(href="#modal-edit-income" data-fancybox)
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable(href="#modal-edit-income" data-fancybox)
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Зарплата
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Подработка
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг
+									tr.table-tr.table-tr--clickable
+										td.table-td 01.06.21 15:00
+										td.table-td.green +2400
+										td.table-td Возвращённый долг от Василия васильевича Чепухина
+
+						.pagination-wrap-outer
+							.pagination-wrap#pagination-wrap
+							a.btn.btn--big(href="#modal-add-income" data-fancybox) Добавить запись
+				.tabs__tab
+					.flex-row
+						.flex-row__item.flex-row__item--w50
+							.table-wrap.table-wrap--type-2.table-wrap--has-title.js-table-scrollbar.js-table-scrollbar--stats-11
+								table.table.table--first-percent.table--2-w30
+									thead.table-thead
+										tr.table-tr.table-tr--head
+											th.table-td.table-td--table-name.red(colspan="3") Расходы
+										tr.table-tr.table-tr--head
+											th.table-td.table-td--head %
+											th.table-td.table-td--head Расходы
+											th.table-td.table-td--head Категория
+									tbody.table-tbody
+										tr.table-tr
+											td.table-td 50
+											td.table-td.red -10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 5
+											td.table-td.red -10000
+											td.table-td Одежда
+
+						.flex-row__item.flex-row__item--w50
+							.table-wrap.table-wrap--type-2.table-wrap--has-title.js-table-scrollbar.js-table-scrollbar--stats-12
+								table.table.table--first-percent.table--2-w30
+									thead.table-thead
+										tr.table-tr.table-tr--head
+											th.table-td.table-td--table-name.green(colspan="3") Доходы
+										tr.table-tr.table-tr--head
+											th.table-td.table-td--head %
+											th.table-td.table-td--head Доходы
+											th.table-td.table-td--head Категория
+									tbody.table-tbody
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Продукты
+
+										tr.table-tr
+											td.table-td 50
+											td.table-td.green +10000
+											td.table-td Одежда
+
+				.tabs__tab
+					.charts
+						.charts__row
+							.charts__col
+								.charts__title.green Доходы
+								.charts__canvas-wrap.charts__canvas-wrap--square
+									canvas.charts__canvas#incomesCatPie
+							.charts__col
+								.charts__title.red Расходы
+								.charts__canvas-wrap.charts__canvas-wrap--square
+									canvas.charts__canvas#expencesCatPie
+
+
+					//.date-range-selector.date-range-selector--centred
+						.date-selector-label Шаг:
+						.date-selector-btn-wrap
+							.date-selector-btn.btn.btn--slim День
+							.date-selector-btn.btn.btn--slim Неделя
+							.date-selector-btn.btn.btn--slim Месяц
+							.date-selector-btn.btn.btn--slim 6 Месяцев
+							.date-selector-btn.btn.btn--slim Год
+					.charts
+						.charts__row
+							.charts__col.charts__col--w100
+								.charts__title.green Доходы
+								.charts__canvas-wrap.charts__canvas-wrap--rectangle-50
+									canvas.charts__canvas#incomesCatLines
+						.charts__row
+							.charts__col.charts__col--w100
+								.charts__title.red Расходы
+								.charts__canvas-wrap.charts__canvas-wrap--rectangle-50
+									canvas.charts__canvas#expencesCatLines

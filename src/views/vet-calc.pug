@@ -1,0 +1,296 @@
+extends layouts/default
+
+block vars
+	-
+		const page = {
+			title: 'index.html'
+		};
+
+
+
+
+block main
+	.loading
+		.loading-icon
+			img(src="../img/loading.svg", alt="")
+	.main-inner
+		.container
+			.tabs-controls-wrap
+				.tabs-controls#tabs-controls-stats(data-target="#tabs-stats")
+					.tabs-controls-item.tabs-controls-item--active Сайт
+				//	.tabs-controls-item Аккаунт
+					.tabs-controls-item Локальные
+					.tabs-controls-item Данные
+
+
+			//
+				input.inp.js-date-time(type="text", name="" value="1243")
+				input.inp(type="text", name="" value="1243")
+				input.inp(type="text", name="" placeholder="1243")
+			.tabs#tabs-stats
+				.tabs__tab.tabs__tab--active
+					.flex-row
+						.flex-row__item.flex-row__item--w50
+							form.js-vet-calc-1.settings-form(action="")
+								.settings-form__title Калькулятор
+								.inp-wrap.inp-wrap--with-currency
+									.inp-name Концентрация ед/мл(единицами может быть что угодно. Исходите из своих)
+									input.inp(type="text", name="concentration", data-validate-type='integer' placeholder="" value="")
+									.inp-currency
+										span ед/мл
+								.inp-wrap.inp-wrap--with-currency
+									.inp-name Дозировка ед/кг(единицами может быть что угодно. Исходите из своих)
+									input.inp(type="text", name="dose", data-validate-type='float' placeholder="" value="")
+									.inp-currency
+										span ед/кг
+								.inp-wrap.inp-wrap--with-currency
+									.inp-name Вес животного, кг
+									input.inp(type="text", name="weight", data-validate-type='float' placeholder="" value="")
+									.inp-currency
+										span кг
+
+								//.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Нужно разбавлять и исходить из не из концентрации в основном флаконе, а
+											b  из концентрации разбавленного в-ва
+										label.custom-switch
+											input(type="checkbox", name="yes-1",data-validate-type='checked'  data-old-required="required")
+											.custom-switch__bg
+											.custom-switch__control
+
+								.inp-wrap
+									br
+									.inp-name Если нужно разбавлять и исходить из не из концентрации в основном флаконе, а
+											b  из концентрации разбавленного в-ва
+											|  то заполните поля ниже
+								.inp-wrap.inp-wrap--with-currency
+									.inp-name Объём ОСНОВНОГО В-ВА в разбавленном растворе, мл
+										b  ЕСЛИ РАЗБАВЛЯТЬ НЕ НУЖНО - ОСТАВЬТЕ 1
+									input.inp(type="text", name="diluted_main", data-validate-type='float' placeholder="" value="1")
+									.inp-currency
+										span мл
+								.inp-wrap.inp-wrap--with-currency
+									.inp-name Объём РАЗБАВИТЕЛЯ, мл
+										b  ЕСЛИ РАЗБАВЛЯТЬ НЕ НУЖНО - ОСТАВЬТЕ 0
+									input.inp(type="text", name="diluted_diluent", data-validate-type='float' placeholder="" value="0")
+									.inp-currency
+										span мл
+
+								.inp-wrap.inp-wrap--with-currency
+									.inp-name РЕЗУЛЬТАТ(Дозировка с учётом веса животного)
+									input.inp(type="text", disabled name="result", data-validate-type='float' placeholder="" value="")
+									.inp-currency
+										span мл
+								.inp-wrap
+									.inp-name Внимание!!! Автор ни при каких обстоятельствах не несёт ответственности ни за что. Создано в учебных целях
+										br
+										| &nbsp;
+									button.btn.btn--big.btn--green-h(type="submit") Вычислить
+
+
+
+
+
+
+						.flex-row__item.flex-row__item--w50
+							//form.js-need-validate-form.settings-form
+								.settings-form__title 123
+								.inp-wrap
+									.inp-name text
+									input.inp(type="text", name="")
+								.inp-wrap
+									.inp-name textarea
+									textarea.inp(type="textarea", name="")
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Switch 1
+										label.custom-switch
+											input(type="checkbox", name="")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									button.btn.btn--big.btn--green-h Сохранить
+
+				.tabs__tab
+					.flex-row
+						.flex-row__item.flex-row__item--w50
+							form.js-need-validate-form.settings-form
+								.settings-form__title Выход из учётной записи
+								.inp-wrap
+									button.btn.btn--w200.btn--big.btn--green-h Выйти
+
+
+
+
+
+						.flex-row__item.flex-row__item--w50
+							form.js-need-validate-form.settings-form
+								.settings-form__title Смена пароля
+								.inp-wrap
+									.inp-name Введите пароль
+									input.inp.js-pwd-inp#reset-pwd-1(type="password", name="password", data-validate-type='password' placeholder="", data-old-required="true")
+								.inp-wrap
+									.inp-name Повторите пароль
+									input.inp.js-pwd-inp(type="password",data-validate-type='2ndPassword' data-first-pwd-inp-selector="#reset-pwd-1" name="re-enter-password", placeholder="", data-old-required="true")
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Показать
+										label.custom-switch
+											input.js-show-password-chb(type="checkbox", name="")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									button.btn.btn--big.btn--green-h Сменить пароль
+							//form.js-need-validate-form.settings-form
+								.settings-form__title 123
+								.inp-wrap
+									.inp-name text
+									input.inp(type="text", name="")
+								.inp-wrap
+									.inp-name textarea
+									textarea.inp(type="textarea", name="")
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Switch 1
+										label.custom-switch
+											input(type="checkbox", name="")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									button.btn.btn--big.btn--green-h Сохранить
+
+				.tabs__tab
+					.flex-row
+						.flex-row__item.flex-row__item--w50
+							.inp-wrap
+								.custom-switch-wrap
+									.custom-switch-name Тёмная тема
+									label.custom-switch
+										input.js-change-local-option(type="checkbox", name="dark-theme-switch")
+										.custom-switch__bg
+										.custom-switch__control
+							.inp-wrap
+								.custom-switch-wrap
+									.custom-switch-name Скрыть логотип
+									label.custom-switch
+										input.js-change-local-option(type="checkbox", name="show-logo-switch")
+										.custom-switch__bg
+										.custom-switch__control
+
+				.tabs__tab
+
+					.flex-row
+						.flex-row__item.flex-row__item--w50
+							form.js-need-validate-form.settings-form(action="data-reset")
+								.settings-form__title Очистить данные
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Я уверен
+										label.custom-switch
+											input(type="checkbox", name="yes-1",data-validate-type='checked'  data-old-required="required")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Это не случайное нажатие
+										label.custom-switch
+											input(type="checkbox", name="yes-2",data-validate-type='checked'  data-old-required="required")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Я готов проститься с накопленными данными
+										label.custom-switch
+											input(type="checkbox", name="yes-3",data-validate-type='checked'  data-old-required="required")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Точно готов
+										label.custom-switch
+											input(type="checkbox", name="yes-4",data-validate-type='checked'  data-old-required="required")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									.custom-switch-wrap
+										.custom-switch-name Хорошо подумал
+										label.custom-switch
+											input(type="checkbox", name="yes-5",data-validate-type='checked'  data-old-required="required")
+											.custom-switch__bg
+											.custom-switch__control
+								.inp-wrap
+									button.btn.btn--big.btn--red-h(type="submit") Выполнить сброс
+
+
+
+block modals
+	.modal.modal-accept#modal-accept
+		.modal-inner
+			.modal-title.modal-title--bold Вы действительно хотите удалить запись "01.06.21 15:00 - 2400 - Зарплата"?
+			.modal-accept-flex
+				.modal-accept-flex__btn.btn--green-h.btn ДА
+				.modal-accept-flex__btn.btn--red-h.btn НЕТ
+
+	.modal.modal-transaction#modal-edit-income
+		.modal-inner
+			.modal-title.modal-title--pin-top Редактировать
+			.modal-transaction__form
+				.inp-wrap
+					input.inp(type="text", name="" placeholder="Сумма")
+				.inp-wrap
+					textarea.inp(name="" placeholder="Описание")
+				.inp-wrap
+					input.inp(type="text", name=""  placeholder="Дата")
+				.inp-wrap
+					select.js-custom-select
+						option Зарплата
+						option Подработка
+						option Возвращённый долг
+
+				.modal-buttons-flex
+					.btn.btn--big.btn--green-h Сохранить
+					.btn.btn--svg-icon.btn--big.btn--red-h
+						include ../img/bytesize-icons/trash.svg
+
+	.modal.modal-transaction#modal-add-income
+		.modal-inner
+			.modal-title.modal-title--pin-top Добавить
+			.modal-transaction__form
+				.inp-wrap
+					input.inp(type="text", name="" placeholder="Сумма")
+				.inp-wrap
+					textarea.inp(name="" placeholder="Описание")
+				.inp-wrap
+					input.inp(type="text", name=""  placeholder="Дата")
+				.inp-wrap
+					select.js-custom-select
+						option Зарплата
+						option Подработка
+						option Возвращённый долг
+
+				.modal-buttons-flex
+					.btn.btn--big.btn--green-h Сохранить
+
+
+
+	.modal.modal-transaction#modal-edit-income-cat
+		.modal-inner
+			.modal-title.modal-title--pin-top Редактировать
+			.modal-transaction__form
+				.inp-wrap
+					input.inp(type="text", name="" placeholder="Название")
+
+				.modal-buttons-flex
+					.btn.btn--big.btn--green-h Сохранить
+					.btn.btn--svg-icon.btn--big.btn--red-h
+						include ../img/bytesize-icons/trash.svg
+
+	.modal.modal-transaction#modal-add-income-cat
+		.modal-inner
+			.modal-title.modal-title--pin-top Добавить
+			.modal-transaction__form
+				.inp-wrap
+					input.inp(type="text", name="" placeholder="Название")
+
+				.modal-buttons-flex
+					.btn.btn--big.btn--green-h Сохранить

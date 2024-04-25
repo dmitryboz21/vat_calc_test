@@ -1,0 +1,69 @@
+
+.dark-theme{
+	filter: invert(0.9);
+	.swal2-icon{
+		filter: invert(0.9);
+	}
+}
+
+.dark-theme{
+	.red {
+		color: $green-txt-color;
+	}
+
+	.green {
+		color: $red-txt-color;
+	}
+}
+.dark-theme{
+	.btn{
+		&--green-h {
+
+			&:hover {
+				background: $red-color;
+			}
+		}
+
+		&--red-h {
+
+			&:hover {
+				background: $green-color;
+			}
+		}
+	}
+}
+.dark-theme{
+	.simple-calc__square{
+
+		&--confirmation {
+			background: $red-color;
+		}
+
+		&--clear {
+			background: $green-color;
+		}
+
+	}
+	.custom-switch__control{
+		filter: invert(0.9);
+	}
+	.inp-wrap {
+
+		&--invalid{
+			.inp, .custom-switch{
+				border-color: $green-color;
+			}
+		}
+	}
+	.expences-cat__icon{
+		filter: invert(0.9) contrast(1.5);
+
+	}
+	.money-movements-item__line--green .money-movements-item__line-fill {
+		background: $red-color;
+	}
+	.money-movements-item__line--red .money-movements-item__line-fill {
+		background: $green-color;
+	}
+}
+
